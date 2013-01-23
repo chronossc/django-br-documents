@@ -15,5 +15,4 @@ class CPFWidget(forms.TextInput):
         self.attrs.update(self.default_attrs)
 
     def render(self, *a, **kw):
-        import ipdb; ipdb.set_trace()
         return super(CPFWidget, self).render(*a, **kw)
