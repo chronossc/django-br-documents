@@ -48,9 +48,11 @@ class CPFField(models.Field):
             return self.get_prep_value(value)
         elif lookup_type == 'in':
             return [self.get_prep_value(v) for v in value]
+        elif lookup_type in ('contains', 'icontains', 'startswith',
+                'istartswith', 'endswith', 'iendswith'):
+            # mimics Django model.Field returning value.
+            return value
         else:
-            # TODO: support contains, icontains, startswith, istartswith,
-            #       endswith and iendswith
             raise TypeError("Lookup type %r not supported." % lookup_type)
 
     def value_to_string(self, obj):
