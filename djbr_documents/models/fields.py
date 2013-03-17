@@ -52,6 +52,8 @@ class CPFField(models.Field):
                 'istartswith', 'endswith', 'iendswith'):
             # mimics Django model.Field returning value.
             return value
+        elif lookup_type == 'isnull':
+            return ''
         else:
             raise TypeError("Lookup type %r not supported." % lookup_type)
 
